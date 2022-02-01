@@ -28,6 +28,7 @@ public class PhoneCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        print("In Camera Scene");
         defaultBackGround = background.texture;
         WebCamDevice[] devices = WebCamTexture.devices;
 
@@ -81,7 +82,7 @@ public class PhoneCamera : MonoBehaviour
         colorTex.LoadRawTextureData(colorByteData);
         colorTex.Apply();
 
-        return colorTex.EncodeToPNG();
+        return colorTex.EncodeToJPG();
     }
     
     static byte[] Color32ArrayToByteArray(Color32[] colors)
@@ -131,7 +132,7 @@ public class PhoneCamera : MonoBehaviour
     {
         byte[] data = ScreenshotWebcam(backCam);
 
-        File.WriteAllBytes(dirPath + "/R_" + Random.Range(0, 100000) + ".png", data);
+        File.WriteAllBytes(dirPath + "/R_" + Random.Range(0, 100000) + ".jpg", data);
         // File.WriteAllBytes(dirPath + "/R_" + Random.Range(0, 100000) + ".png", saveImageBytes);
         Debug.Log(data.Length / 1024 + "Kb was saved as: " + dirPath);
     }
